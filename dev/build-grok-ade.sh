@@ -6,13 +6,13 @@
 #
 
 export APP_NAME="Grok ADE"
-export ASSETS_REPOSITORY="grok-ade/grok-ade"
+export ASSETS_REPOSITORY="${ASSETS_REPOSITORY:-grok-ade/grok-ade}"
 export BINARY_NAME="grok-ade"
-export CI_BUILD="no"
-export GH_REPO_PATH="grok-ade/grok-ade"
+export CI_BUILD="${CI_BUILD:-no}"
+export GH_REPO_PATH="${GH_REPO_PATH:-grok-ade/grok-ade}"
 export GLOBAL_DIRNAME="grok-ade"
 export GROK_ADE_BUILD="yes"
-export ORG_NAME="grok-ade"
+export ORG_NAME="${ORG_NAME:-grok-ade}"
 export SHOULD_BUILD="yes"
 export SKIP_ASSETS="yes"
 export SKIP_BUILD="no"
