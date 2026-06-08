@@ -152,11 +152,27 @@ if [[ "${SKIP_ASSETS}" == "no" ]]; then
     rm -rf build/windows/msi/releasedir
   fi
 
-  if [[ "${OS_NAME}" == "osx" && -f "dev/osx/codesign.env" ]]; then
-    . dev/osx/macos-codesign.env
+  if [[ "${OS_NAME}" == "osx" ]]; then
+    if [[ -f "dev/osx/macos-codesign.env" ]]; then
+      . dev/osx/macos-codesign.env
+    elif [[ -f "dev/osx/codesign.env" ]]; then
+      . dev/osx/codesign.env
+    fi
 
-    echo "CERTIFICATE_OSX_APPLE_ID: ${CERTIFICATE_OSX_APPLE_ID}"
+    if [[ -n "${CERTIFICATE_OSX_APPLE_ID:-}" ]]; then
+      echo "CERTIFICATE_OSX_APPLE_ID: ${CERTIFICATE_OSX_APPLE_ID}"
+    fi
+  elif [[ "${OS_NAME}" == "windows" && -f "dev/windows/sign.env" ]]; then
+    # shellcheck disable=SC1091
+    . dev/windows/sign.env
+  elif [[ "${OS_NAME}" == "linux" && -f "dev/linux/gpg-sign.env" ]]; then
+    # shellcheck disable=SC1091
+    . dev/linux/gpg-sign.env
   fi
 
   . prepare_assets.sh
+
+  if [[ -f "./sign_assets.sh" ]]; then
+    bash ./sign_assets.sh
+  fi
 fi
