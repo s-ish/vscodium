@@ -42,12 +42,10 @@ Handled by scripts instead of patches:
 | First-run layout | `extensions/grok-ade/src/layout.ts` |
 | Setting | `grok-ade.openAgentOnStartup` |
 
-## Planned patches (Phase 1 step 8+)
+## Optional patches
 
-| Patch | Purpose |
-|-------|---------|
-| _(none pending)_ | Windows/macOS/Linux CI builds next |
+Add `*.patch` files here only when a script-based customization cannot survive the next VSCodium merge. Patches in this directory are applied automatically from `prepare_vscode.sh` during `./dev/build-grok-ade.sh`.
 
-Open VSX gallery is already configured in `prepare_vscode.sh` (inherited from VSCodium).
+Open VSX gallery is configured in `prepare_vscode.sh` (inherited from VSCodium).
 
-See [docs/PHASE-1-FORK.md](../../../docs/PHASE-1-FORK.md) and [docs/FORK-MAINTENANCE.md](../../../docs/FORK-MAINTENANCE.md).
+See [docs/FORK-MAINTENANCE.md](../../../docs/FORK-MAINTENANCE.md) for upstream merge procedures.
