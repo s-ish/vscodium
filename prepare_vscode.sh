@@ -66,7 +66,9 @@ if [[ "${DISABLE_UPDATE}" != "yes" ]]; then
   # fi
 fi
 
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+if [[ "${GROK_ADE_BUILD}" == "yes" ]]; then
+  . ../prepare_grok_ade_branding.sh
+elif [[ "${VSCODE_QUALITY}" == "insider" ]]; then
   setpath "product" "nameShort" "VSCodium - Insiders"
   setpath "product" "nameLong" "VSCodium - Insiders"
   setpath "product" "applicationName" "codium-insiders"
@@ -128,6 +130,11 @@ setpath_json "product" "tunnelApplicationConfig" '{}'
 jsonTmp=$( jq -s '.[0] * .[1]' product.json ../product.json )
 echo "${jsonTmp}" > product.json && unset jsonTmp
 
+if [[ "${GROK_ADE_BUILD}" == "yes" && -f "../product.grok-ade.json" ]]; then
+  jsonTmp=$( jq -s '.[0] * .[1]' product.json ../product.grok-ade.json )
+  echo "${jsonTmp}" > product.json && unset jsonTmp
+fi
+
 cat product.json
 # }}}
 
@@ -182,6 +189,14 @@ for file in ../patches/user/*.patch; do
     apply_patch "${file}"
   fi
 done
+
+if [[ "${GROK_ADE_BUILD}" == "yes" && -d "../patches/grok-ade/" ]]; then
+  for file in ../patches/grok-ade/*.patch; do
+    if [[ -f "${file}" ]]; then
+      apply_patch "${file}"
+    fi
+  done
+fi
 # }}}
 
 set -x
@@ -235,16 +250,20 @@ cp package.json{,.bak}
 
 setpath "package" "version" "${RELEASE_VERSION%-insider}"
 
-replace 's|Microsoft Corporation|VSCodium|' package.json
-
-cp resources/server/manifest.json{,.bak}
-
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
-  setpath "resources/server/manifest" "name" "VSCodium - Insiders"
-  setpath "resources/server/manifest" "short_name" "VSCodium - Insiders"
+if [[ "${GROK_ADE_BUILD}" == "yes" ]]; then
+  . ../prepare_grok_ade_postprocess.sh
 else
-  setpath "resources/server/manifest" "name" "VSCodium"
-  setpath "resources/server/manifest" "short_name" "VSCodium"
+  replace 's|Microsoft Corporation|VSCodium|' package.json
+
+  cp resources/server/manifest.json{,.bak}
+
+  if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+    setpath "resources/server/manifest" "name" "VSCodium - Insiders"
+    setpath "resources/server/manifest" "short_name" "VSCodium - Insiders"
+  else
+    setpath "resources/server/manifest" "name" "VSCodium"
+    setpath "resources/server/manifest" "short_name" "VSCodium"
+  fi
 fi
 
 # announcements
@@ -252,10 +271,14 @@ replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announce
 
 ../undo_telemetry.sh
 
-replace 's|Microsoft Corporation|VSCodium|' build/lib/electron.ts
-replace 's|([0-9]) Microsoft|\1 VSCodium|' build/lib/electron.ts
+if [[ "${GROK_ADE_BUILD}" != "yes" ]]; then
+  replace 's|Microsoft Corporation|VSCodium|' build/lib/electron.ts
+  replace 's|([0-9]) Microsoft|\1 VSCodium|' build/lib/electron.ts
+fi
 
-if [[ "${OS_NAME}" == "linux" ]]; then
+if [[ "${GROK_ADE_BUILD}" == "yes" ]]; then
+  :
+elif [[ "${OS_NAME}" == "linux" ]]; then
   # microsoft adds their apt repo to sources
   # unless the app name is code-oss
   # as we are renaming the application to vscodium
@@ -293,5 +316,6 @@ elif [[ "${OS_NAME}" == "windows" ]]; then
   sed -i 's|https://code.visualstudio.com|https://vscodium.com|' build/win32/code.iss
   sed -i 's|Microsoft Corporation|VSCodium|' build/win32/code.iss
 fi
+# Grok ADE linux/windows replacements run in prepare_grok_ade_postprocess.sh
 
 cd ..

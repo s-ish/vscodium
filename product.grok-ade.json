@@ -1,0 +1,16 @@
+{
+  "nameShort": "Grok ADE",
+  "nameLong": "Grok Agentic Development Environment",
+  "applicationName": "grok-ade",
+  "dataFolderName": ".grok-ade",
+  "win32MutexName": "grokade",
+  "win32AppUserModelId": "Grok.GrokADE",
+  "win32RegValueName": "GrokADE",
+  "darwinBundleIdentifier": "com.grok-ade.app",
+  "linuxIconName": "grok-ade",
+  "urlProtocol": "grok-ade",
+  "reportIssueUrl": "https://github.com/grok-ade/grok-ade/issues/new",
+  "licenseUrl": "https://github.com/grok-ade/grok-ade/blob/main/LICENSE",
+  "documentationUrl": "https://github.com/grok-ade/grok-ade#readme",
+  "welcomePageUrl": "https://github.com/grok-ade/grok-ade#quick-start"
+}
