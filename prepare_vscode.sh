@@ -201,6 +201,10 @@ if [[ "${GROK_ADE_BUILD}" == "yes" && -d "../patches/grok-ade/" ]]; then
     fi
   done
 fi
+
+if [[ "${GROK_ADE_BUILD}" == "yes" && -f "../inject-grok-welcome.mjs" ]]; then
+  node ../inject-grok-welcome.mjs
+fi
 # }}}
 
 set -x
@@ -271,7 +275,11 @@ else
 fi
 
 # announcements
-replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announcements-builtin.json )|" src/vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.ts
+if [[ "${GROK_ADE_BUILD}" == "yes" && -f "../announcements-grok-ade.json" ]]; then
+  replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announcements-grok-ade.json )|" src/vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.ts
+else
+  replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announcements-builtin.json )|" src/vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.ts
+fi
 
 ../undo_telemetry.sh
 

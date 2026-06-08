@@ -24,11 +24,19 @@ Handled by scripts instead of patches:
 | Append `builtInExtensions` | `append_grok_ade_builtin.sh` (from `prepare_vscode.sh`) |
 | Staged artifact | `builtin-extensions/grok-ade.vsix` |
 
-## Planned patches (Phase 1 step 6+)
+## Welcome page (P1-06 — scripts + extension)
+
+| Piece | Path |
+|-------|------|
+| Setup walkthrough | `extensions/grok-ade` → `contributes.walkthroughs` |
+| CLI / auth checks | `extensions/grok-ade/src/welcome.ts` |
+| Welcome announcements | `announcements-grok-ade.json` |
+| Start entries (Open Grok / Set up) | `inject-grok-welcome.mjs` |
+
+## Planned patches (Phase 1 step 7+)
 
 | Patch | Purpose |
 |-------|---------|
-| `welcome.patch` | First-run Grok CLI setup wizard |
 | `default-layout.patch` | Agent sidebar open by default |
 
 Open VSX gallery is already configured in `prepare_vscode.sh` (inherited from VSCodium).
