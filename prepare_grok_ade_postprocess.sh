@@ -14,21 +14,21 @@ if [[ "${OS_NAME}" == "linux" ]]; then
   sed -i "s/code-oss/grok-ade/" resources/linux/debian/postinst.template
 
   sed -i 's|Visual Studio Code|Grok ADE|g' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/grok-ade/grok-ade#download|' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com/home/home-screenshot-linux-lg.png|https://raw.githubusercontent.com/grok-ade/grok-ade/main/fork/vscodium/icons/grok-ade/grok_ade.svg|' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com|https://github.com/grok-ade/grok-ade|g' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/s-ish/grok-ade#download|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com/home/home-screenshot-linux-lg.png|https://raw.githubusercontent.com/s-ish/grok-ade/main/fork/vscodium/icons/grok-ade/grok_ade.svg|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com|https://github.com/s-ish/grok-ade|g' resources/linux/code.appdata.xml
 
-  sed -i 's|Microsoft Corporation <vscode-linux@microsoft.com>|Grok ADE https://github.com/grok-ade/grok-ade|' resources/linux/debian/control.template
+  sed -i 's|Microsoft Corporation <vscode-linux@microsoft.com>|Grok ADE https://github.com/s-ish/grok-ade|' resources/linux/debian/control.template
   sed -i 's|Visual Studio Code|Grok ADE|g' resources/linux/debian/control.template
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/grok-ade/grok-ade#download|' resources/linux/debian/control.template
-  sed -i 's|https://code.visualstudio.com|https://github.com/grok-ade/grok-ade|g' resources/linux/debian/control.template
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/s-ish/grok-ade#download|' resources/linux/debian/control.template
+  sed -i 's|https://code.visualstudio.com|https://github.com/s-ish/grok-ade|g' resources/linux/debian/control.template
 
   sed -i 's|Microsoft Corporation|Grok ADE|' resources/linux/rpm/code.spec.template
-  sed -i 's|Visual Studio Code Team <vscode-linux@microsoft.com>|Grok ADE https://github.com/grok-ade/grok-ade|' resources/linux/rpm/code.spec.template
+  sed -i 's|Visual Studio Code Team <vscode-linux@microsoft.com>|Grok ADE https://github.com/s-ish/grok-ade|' resources/linux/rpm/code.spec.template
   sed -i 's|Visual Studio Code|Grok ADE|g' resources/linux/rpm/code.spec.template
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/grok-ade/grok-ade#download|' resources/linux/rpm/code.spec.template
-  sed -i 's|https://code.visualstudio.com|https://github.com/grok-ade/grok-ade|g' resources/linux/rpm/code.spec.template
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/s-ish/grok-ade#download|' resources/linux/rpm/code.spec.template
+  sed -i 's|https://code.visualstudio.com|https://github.com/s-ish/grok-ade|g' resources/linux/rpm/code.spec.template
 elif [[ "${OS_NAME}" == "windows" ]]; then
-  sed -i 's|https://code.visualstudio.com|https://github.com/grok-ade/grok-ade|g' build/win32/code.iss
+  sed -i 's|https://code.visualstudio.com|https://github.com/s-ish/grok-ade|g' build/win32/code.iss
   sed -i 's|Microsoft Corporation|Grok ADE|g' build/win32/code.iss
 fi

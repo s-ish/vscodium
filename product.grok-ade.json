@@ -9,8 +9,8 @@
   "darwinBundleIdentifier": "com.grok-ade.app",
   "linuxIconName": "grok-ade",
   "urlProtocol": "grok-ade",
-  "reportIssueUrl": "https://github.com/grok-ade/grok-ade/issues/new",
-  "licenseUrl": "https://github.com/grok-ade/grok-ade/blob/main/LICENSE",
-  "documentationUrl": "https://github.com/grok-ade/grok-ade#readme",
-  "welcomePageUrl": "https://github.com/grok-ade/grok-ade#quick-start"
+  "reportIssueUrl": "https://github.com/s-ish/grok-ade/issues/new",
+  "licenseUrl": "https://github.com/s-ish/grok-ade/blob/master/LICENSE",
+  "documentationUrl": "https://github.com/s-ish/grok-ade#readme",
+  "welcomePageUrl": "https://github.com/s-ish/grok-ade#quick-start"
 }

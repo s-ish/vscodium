@@ -33,7 +33,7 @@ if (!product.builtInExtensions.some((e) => e.name === 'grok-ade')) {
     name: 'grok-ade',
     version,
     vsix: vsixPath,
-    repo: 'https://github.com/grok-ade/grok-ade',
+    repo: 'https://github.com/s-ish/grok-ade',
     sha256,
     metadata: {
       id: 'grok-ade.grok-ade',

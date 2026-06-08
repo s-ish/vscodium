@@ -2,14 +2,14 @@
 # shellcheck disable=SC2154
 # Grok ADE product.json branding — sourced from prepare_vscode.sh when GROK_ADE_BUILD=yes
 
-setpath "product" "licenseUrl" "https://github.com/grok-ade/grok-ade/blob/main/LICENSE"
-setpath "product" "reportIssueUrl" "https://github.com/grok-ade/grok-ade/issues/new"
-setpath "product" "documentationUrl" "https://github.com/grok-ade/grok-ade#readme"
-setpath "product" "welcomePageUrl" "https://github.com/grok-ade/grok-ade#quick-start"
+setpath "product" "licenseUrl" "https://github.com/s-ish/grok-ade/blob/main/LICENSE"
+setpath "product" "reportIssueUrl" "https://github.com/s-ish/grok-ade/issues/new"
+setpath "product" "documentationUrl" "https://github.com/s-ish/grok-ade#readme"
+setpath "product" "welcomePageUrl" "https://github.com/s-ish/grok-ade#quick-start"
 
 if [[ "${DISABLE_UPDATE}" != "yes" ]]; then
   setpath "product" "updateUrl" "https://raw.githubusercontent.com/grok-ade/versions/refs/heads/master"
-  setpath "product" "downloadUrl" "https://github.com/grok-ade/grok-ade/releases"
+  setpath "product" "downloadUrl" "https://github.com/s-ish/grok-ade/releases"
 fi
 
 setpath "product" "nameShort" "Grok ADE"

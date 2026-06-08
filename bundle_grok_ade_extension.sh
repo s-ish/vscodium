@@ -21,7 +21,7 @@ fi
 echo "Building grok-ade extension from ${MONOREPO_ROOT}..."
 (
   cd "${MONOREPO_ROOT}"
-  pnpm --filter grok-ade run build
+  pnpm --filter grok-ade... run build
   pnpm --filter grok-ade run package
 )
 
