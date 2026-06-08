@@ -35,14 +35,44 @@ const grokEntries = `\t{
 \t\t}
 \t},`;
 
-const remoteEntryEnd =
-  /(\t\{\n\t\tid: 'topLevelRemoteOpen',[\s\S]*?\n\t\},)\n(\];)/;
+const EOL = content.includes('\r\n') ? '\r\n' : '\n';
 
-if (!remoteEntryEnd.test(content)) {
-  console.error('inject-grok-welcome: could not find topLevelRemoteOpen anchor');
+const entryBlock = (id) =>
+  new RegExp(
+    `(\\t\\{\\r?\\n\\t\\tid: '${id}',[\\s\\S]*?\\r?\\n\\t\\},)\\r?\\n(\\];)`,
+  );
+
+const anchors = [
+  'topLevelRemoteOpen',
+  'topLevelGitOpen',
+  'topLevelGitClone',
+  'topLevelOpenFolder',
+  'topLevelOpenFile',
+];
+
+let injected = false;
+for (const id of anchors) {
+  const pattern = entryBlock(id);
+  if (pattern.test(content)) {
+    content = content.replace(pattern, `$1${EOL}${grokEntries}${EOL}$2`);
+    injected = true;
+    console.log(`gettingStartedContent.ts: injected Grok ADE start entries after ${id}`);
+    break;
+  }
+}
+
+if (!injected) {
+  const fallback = /(export const startEntries: GettingStartedStartEntryContent = \[[\s\S]*?)(\r?\n];)/;
+  if (fallback.test(content)) {
+    content = content.replace(fallback, `$1${EOL}${grokEntries}$2`);
+    injected = true;
+    console.log('gettingStartedContent.ts: injected Grok ADE start entries before startEntries close');
+  }
+}
+
+if (!injected) {
+  console.error('inject-grok-welcome: could not find a startEntries injection anchor');
   process.exit(1);
 }
 
-content = content.replace(remoteEntryEnd, `$1\n${grokEntries}\n$2`);
 writeFileSync(file, content);
-console.log('gettingStartedContent.ts: injected Grok ADE start entries');
