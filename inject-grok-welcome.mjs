@@ -15,7 +15,7 @@ if (content.includes("topLevelGrokAgent")) {
 const grokEntries = `\t{
 \t\tid: 'topLevelGrokAgent',
 \t\ttitle: localize('gettingStarted.grokAgent.title', "Open Grok Agent"),
-\t\tdescription: localize('gettingStarted.grokAgent.description', "Chat with Grok about your codebase"),
+\t\tdescription: localize('gettingStarted.grokAgent.description', "Chat with Grok in the secondary side bar"),
 \t\twhen: '!isWeb',
 \t\ticon: Codicon.sparkle,
 \t\tcontent: {

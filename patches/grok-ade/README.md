@@ -33,11 +33,20 @@ Handled by scripts instead of patches:
 | Welcome announcements | `announcements-grok-ade.json` |
 | Start entries (Open Grok / Set up) | `inject-grok-welcome.mjs` |
 
-## Planned patches (Phase 1 step 7+)
+## Default layout (P1-07 — extension)
+
+| Piece | Path |
+|-------|------|
+| Secondary side bar container | `extensions/grok-ade/package.json` → `viewsContainers.secondarySidebar` |
+| Default visibility | `configurationDefaults.workbench.secondarySideBar.defaultVisibility` |
+| First-run layout | `extensions/grok-ade/src/layout.ts` |
+| Setting | `grok-ade.openAgentOnStartup` |
+
+## Planned patches (Phase 1 step 8+)
 
 | Patch | Purpose |
 |-------|---------|
-| `default-layout.patch` | Agent sidebar open by default |
+| _(none pending)_ | Windows/macOS/Linux CI builds next |
 
 Open VSX gallery is already configured in `prepare_vscode.sh` (inherited from VSCodium).
 
