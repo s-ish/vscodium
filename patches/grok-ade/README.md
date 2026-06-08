@@ -16,11 +16,18 @@ Handled by scripts instead of patches:
 | Icon sources | `icons/grok-ade/*.svg` |
 | Icon install | `icons/build_grok_ade_icons.sh` |
 
-## Planned patches (Phase 1 step 4+)
+## Built-in extension (P1-04 — scripts, no patch)
+
+| Step | Path |
+|------|------|
+| Build + stage VSIX | `bundle_grok_ade_extension.sh` |
+| Append `builtInExtensions` | `append_grok_ade_builtin.sh` (from `prepare_vscode.sh`) |
+| Staged artifact | `builtin-extensions/grok-ade.vsix` |
+
+## Planned patches (Phase 1 step 6+)
 
 | Patch | Purpose |
 |-------|---------|
-| `builtin-extension.patch` | Bundle `grok-ade` VS Code extension |
 | `welcome.patch` | First-run Grok CLI setup wizard |
 | `default-layout.patch` | Agent sidebar open by default |
 

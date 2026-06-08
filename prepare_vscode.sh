@@ -135,6 +135,10 @@ if [[ "${GROK_ADE_BUILD}" == "yes" && -f "../product.grok-ade.json" ]]; then
   echo "${jsonTmp}" > product.json && unset jsonTmp
 fi
 
+if [[ "${GROK_ADE_BUILD}" == "yes" ]]; then
+  . ../append_grok_ade_builtin.sh
+fi
+
 cat product.json
 # }}}
 

@@ -30,4 +30,8 @@ if [[ -f "${ROOT_DIR}/icons/build_grok_ade_icons.sh" ]]; then
   bash "${ROOT_DIR}/icons/build_grok_ade_icons.sh"
 fi
 
+if [[ -f "${ROOT_DIR}/bundle_grok_ade_extension.sh" ]]; then
+  bash "${ROOT_DIR}/bundle_grok_ade_extension.sh"
+fi
+
 exec bash "${SCRIPT_DIR}/build.sh" "$@"
